@@ -1,0 +1,24 @@
+
+defaults: &defaults
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  username: root
+  password: 
+  host: localhost
+  database: doless
+
+development:
+  <<: *defaults
+  database: doless_development
+  
+test:
+  <<: *defaults
+  database: doless_test
+  
+production:
+  <<: *defaults
+  database: doless_production
+  
+
