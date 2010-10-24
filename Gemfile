@@ -30,6 +30,7 @@ group :development, :test do
 	gem "rspec-rails", ">= 2.0.1"
 	gem "steak", ">= 1.0.0.rc.1"
 	gem "capybara"
+	gem 'web-app-theme', '>= 0.6.2'
 end
 
 gem "devise"
