@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  
+  before_filter :find_project, :only=>[:show]
+  before_filter :find_project_for_management, :only=>[:edit, :update, :destroy]
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = Project.all
+    @projects = current_user.projects.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +16,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
-    @project = Project.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,7 +36,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @project = Project.find(params[:id])
   end
 
   # POST /projects
@@ -59,7 +58,6 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.xml
   def update
-    @project = Project.find(params[:id])
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
@@ -75,7 +73,6 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.xml
   def destroy
-    @project = Project.find(params[:id])
     @project.destroy
 
     respond_to do |format|
