@@ -1,7 +1,12 @@
 <li class="nested_permission">
 	<%= f.hidden_field :id, :class=>"partial_id"%>
-	<%= f.label :user_id %> <%= f.select :user_id, User.all.map{|u| [u.name, u.id]} %>
-	<%= f.label :permission_type %> <%= f.select :permission_type, Permission::PERMISSION_TYPES %>
-	<%= f.label :_destroy %>
-	<%= f.check_box :_destroy, :class=>"destroy_nested", 'data-selector'=>'li.nested_permission' %>
+	<%= f.label :user_id %> <%= f.select :user_id, User.all.map{|u| [u.name, u.id]}, {}, {:disabled=>(f.object.permission_type == Permission::PERMISSION_TYPES[:admin])} %>
+	<%= f.label :permission_type %> 
+	<% unless f.object.permission_type == Permission::PERMISSION_TYPES[:admin] %>
+		<%= f.select :permission_type, Permission::PERMISSION_TYPES.sort{|a,b| a[1]<=>b[1]}.delete_if{|k,v| k=='admin'.to_sym} %>
+		<%= f.label :_destroy %>
+		<%= f.check_box :_destroy, :class=>"destroy_nested", 'data-selector'=>'li.nested_permission'  %>
+	<% else %>
+		<%= f.select :permission_type, Permission::PERMISSION_TYPES.sort {|a,b| a[1]<=>b[1]}, {}, {:disabled=>true} %>
+	<% end %>
 </li>

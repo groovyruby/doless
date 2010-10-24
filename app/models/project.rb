@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   
   validates :name, :presence=>true
   
-  accepts_nested_attributes_for :permissions, :allow_destroy=>true
+  accepts_nested_attributes_for :permissions, :allow_destroy=>true, :reject_if=>proc {|p| p['permission_type'] == Permission::PERMISSION_TYPES[:admin] }
   
   attr_accessible :name, :permissions_attributes
   

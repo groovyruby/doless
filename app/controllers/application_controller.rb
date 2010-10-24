@@ -1,15 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  layout :layout_by_resource
+  #layout :layout_by_resource
 
   protected
     def find_project
-      @project = current_user.projects.find(params[:id])
+      @project = current_user.projects.find(params[:project_id])
     end
     
     def find_project_for_management
-      @project = current_user.projects.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:manager]).find(params[:id])
+      @project = current_user.projects.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:manager]).find(params[:project_id])
     end
   
   private 

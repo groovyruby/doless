@@ -1,5 +1,13 @@
 Doless::Application.routes.draw do
-  resources :projects
+  
+
+  
+  resources :projects do
+    collection do
+      get 'all'
+    end
+    root :to=>'projects#show'
+  end
 
   resource :dashboard
 
