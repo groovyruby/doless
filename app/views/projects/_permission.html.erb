@@ -1,0 +1,7 @@
+<li class="nested_permission">
+	<%= f.hidden_field :id, :class=>"partial_id"%>
+	<%= f.label :user_id %> <%= f.select :user_id, User.all.map{|u| [u.name, u.id]} %>
+	<%= f.label :permission_type %> <%= f.select :permission_type, Permission::PERMISSION_TYPES %>
+	<%= f.label :_destroy %>
+	<%= f.check_box :_destroy, :class=>"destroy_nested", 'data-selector'=>'li.nested_permission' %>
+</li>

@@ -1,4 +1,6 @@
 Doless::Application.routes.draw do
+  resources :projects
+
   resource :dashboard
 
   devise_for :users
