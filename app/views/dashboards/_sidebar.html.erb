@@ -1,5 +1,5 @@
 <div class="block">
-  <h3><%= t('.your_projects', :default=>'Your projects')%> (<%= link_to t('.all_projects', :default=>'All projects'), all_projects_path %>)</h3>
+  <h3><%= t('.your_projects', :default=>'Your projects')%> (<%= link_to t('.all_projects', :default=>'All projects'), projects_path %>)</h3>
   <ul class="navigation">
 		<% for p in current_user.projects %>
     	<li><%= link_to p.name, project_path(p) %></li>

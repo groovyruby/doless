@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   #before_filter :find_project_for_management, :only=>[:edit, :update, :destroy]
   # GET /projects
   # GET /projects.xml
-  def all
+  def index
     @projects = current_user.projects.all
 
     respond_to do |format|
