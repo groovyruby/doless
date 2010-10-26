@@ -1,4 +1,4 @@
-<%= form_for [@project, @ticket], :html=>{:multipart=>true} do |f| %>
+<%= form_for [@project, @ticket], :html=>{:multipart=>true, :class=>"form"} do |f| %>
   <% content_for :head do %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
@@ -19,34 +19,41 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, :class=>"textfield medium" %>
+  <div class="group">
+    <%= f.label :title, :class=>'label' %>
+    <%= f.text_field :title, :class=>"text_field" %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :size=>"60x10" %>
+  <div class="group">
+    <%= f.label :description, :class=>'label' %>
+    <%= f.text_area :description, :size=>"60x10", :class=>"text_area" %>
   </div>
-  <div class="field">
-    <%= f.label :priority %><br />
-    <%= f.select :priority, Ticket::PRIORITIES %>
+  <div class="group" style="width: 150px; float: left;">
+    <%= f.label :priority, :class=>'label' %>
+    <%= f.select :priority, Ticket::PRIORITIES, :class=>'text_field select' %>
   </div>
   <% unless f.object.new_record? %>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.select :status, Ticket.state_machines[:default].statuses_for_select %>
+  <div class="group" style="float: left; width: 150px;">
+    <%= f.label :status, :class=>'label' %>
+    <%= f.select :status, Ticket.statuses_for_select, :class=>'text_field select' %>
+  </div>
+	<div class="group" style="float: left; width: 150px;">
+    <%= f.label :responsible_id, :class=>'label' %>
+    <%= f.select :responsible_id, [['-','']]|users_in_project_for_select(@project), :class=>'text_field select' %>
   </div>
   <% end %>
-  <ul id="assets_fields">
+  <ul id="assets_fields" style="clear: both;">
      <%#= f.fields_for :assets do |fp| %>
          <%#= render :partial=>"asset", :locals=>{:f=>fp}%>
      <%# end %>
   </ul>
   <a name="asset"></a>
-  <%= link_to 'Add asset', '#asset', :class => "add_nested_item", :rel => "asset" %><br />
-
-  <div class="actions">
-    <%= f.submit :class=>"button" %>
-  </div>
+  <%= link_to '+ Add asset', '#asset', :class => "add_nested_item", :rel => "asset" %><br />
+	<br /><br />	
+  <div class="group navform wat-cf">
+	  <button class="button" type="submit">
+	    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t(".create_ticket", :default => "Create ticket") %>
+	  </button>  
+	  <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.cancel", :default => "Cancel")}") + " " + t("web-app-theme.cancel", :default => "Cancel"), f.object.new_record? ? project_tickets_path(@project) : project_ticket_path(@project, @ticket), :class => "button" %> 
+	</div>
 <% end %>
 

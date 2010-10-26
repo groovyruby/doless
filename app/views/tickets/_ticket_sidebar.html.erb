@@ -1,0 +1,15 @@
+<div class="block">
+  <h3><%= t('.observed_by', :default=>'Ticket observed by')%></h3>
+  <ul class="navigation">
+		<% for u in @ticket.project.users %>
+    	<li><%= link_to u.full_name, '#' %></li>
+		<% end %>
+  </ul>
+</div>
+
+<div class="block">
+  <h3><%= t('.attached_assets', :default=>'Attached assets')%></h3>
+  <ul class="navigation">
+		
+  </ul>
+</div>

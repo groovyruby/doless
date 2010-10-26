@@ -1,1 +1,81 @@
 /* Override here any style defined by web-app-theme */
+
+.single_ticket_table td{
+  padding: 5px;
+}
+.single_ticket_table h4{
+  margin: 5px 0;
+}
+.ticket_modification{
+  font-size: 10px;
+}
+.ticket_status, .ticket_priority{
+  padding: 5px;
+  background-color: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.ticket_priority_normal{
+  background-color: #ffff66;
+}
+.ticket_priority_high{
+  background-color: #ff8000;
+}
+.ticket_priority_critical{
+  background-color: #ff0080;
+}
+
+.ticket_status_invalid{
+  background-color: #999;
+}
+
+.ticket_status_closed{
+  background-color: #8000ff;
+}
+
+.ticket_status_fixed{
+  background-color: #cc66ff;
+}
+
+.ticket_status_new{
+  background-color: #ccff66;
+}
+.ticket_status_opened{
+  background-color: #66ccff;
+}
+
+table.single_ticket_show{
+  margin-bottom: 0px;
+}
+table.single_ticket_show td{
+  border: 0px;
+}
+table.ticket_comment_form{
+  width: 600px;
+  margin-left: 30px;
+}
+table.ticket_comment_form td{
+  border: 0px;
+  padding: 2px;
+}
+table.ticket_comment_form textarea{
+  width: 100%;
+}
+table tr.single_ticket_bottom td{
+  border: 0px;
+}
+
+.header_icon{
+  padding: 0 10px;
+}
+.single_comment_table{
+  margin-left: 30px;
+}
+.single_comment_table td{
+  padding: 7px;
+}
+.single_comment_table p{
+  margin: 0;
+}

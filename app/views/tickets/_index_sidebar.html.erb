@@ -1,3 +1,5 @@
+
+<!-- >
 <h5><%= t('.filter_priority', :default=>"Filter by priority") %></h5>
 <ul class="sidebar-nav">
   <% for p in Ticket::PRIORITIES.sort {|a,b| a[1]<=>b[1]} do %>
@@ -19,3 +21,4 @@
   <li><a>Reporter</a></li>
   <li><a>Priority</a></li>
 </ul>
+//-->

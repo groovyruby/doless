@@ -12,20 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :size=>"40x5" %>
+		<table class="table ticket_comment_form">
+			<tr>
+				<td colspan="3">
+					<%= f.label :description %><br />
+			    <%= f.text_area :description, :size=>"60x5" %>
+				</td>
+			<tr>
+				<td width="33%">
+    			<%= f.label :priority_to %>:<br />
+    			<%= f.select :priority_to, Ticket::PRIORITIES %>
+				</td>
+				<td width="33%">
+			    <%= f.label :status_to %>:<br />
+			    <%= f.select :status_to, Ticket.statuses_for_select %>
+				</td>
+				<td>
+    			<%= f.label :responsible_id_to %>:<br />
+			    <%= f.select :responsible_id_to, [['-','']]|users_in_project_for_select(@project) %>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="right" style="padding-top: 10px;">
+					<button class="button" type="submit"  style="float: right;">
+				    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t(".create_new_comments", :default => "Create new comment") %>
+				  </button>
+				</td>
+			</tr>
+		</table>
   </div>
-  <div class="field">
-    <%= f.label :priority_to %>:
-    <%= f.select :priority_to, Ticket::PRIORITIES %>
-    |
-    <%= f.label :status_to %>:
-    <%= f.select :status_to, Ticket.statuses_for_select %>
-    |
-    <%= f.label :responsible_id_to %>:
-    <%= f.select :responsible_id_to, [['-','']]|users_in_project_for_select(@project) %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
 <% end %>

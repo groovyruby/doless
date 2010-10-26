@@ -3,9 +3,14 @@
 <head>
   <title>Doless</title>
   <%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", :cache => true %>
-  <%= javascript_include_tag 'jquery/jquery.min', 'rails', 'application', :cache => true %>
+  <%= javascript_include_tag 'jquery/jquery.min', 'jquery/jquery.cookie', 'rails', 'application', :cache => true %>
   <%= csrf_meta_tag %>
 	<%= yield(:head) || "" %>
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){
+			
+		});
+	</script>
 </head>
 <body>
   <div id="container">
@@ -19,10 +24,10 @@
       </div>
       <div id="main-navigation">
         <ul class="wat-cf">
-        	<li><%= link_to t('.dashboard', :default=>'Dashboard'), dashboard_path %></li>
-					<% unless @project.blank? %>
-						<li><%= link_to @project.name, @project %></li>
-						<li><%= link_to t('.tickets', :default=>'Tickets'), project_tickets_path(@project) %></li>
+        	<li class="<%= controller.controller_path == 'dashboards' ? 'active' : '' %>"><%= link_to t('.dashboard', :default=>'Dashboard'), dashboard_path %></li>
+					<% if not @project.blank? and not @project.id.blank? %>
+						<li class="<%= controller.controller_path == 'projects' ? 'active' : '' %>"><%= link_to @project.name, @project %></li>
+						<li class="<%= controller.controller_path == 'tickets' ? 'active' : '' %>"><%= link_to t('.tickets', :default=>'Tickets'), project_tickets_path(@project) %></li>
 					<% end %>
         </ul>
       </div>

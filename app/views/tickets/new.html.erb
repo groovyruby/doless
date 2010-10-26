@@ -1,6 +1,14 @@
-<h2>New ticket</h2>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', project_tickets_path(@project) %>
-
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to 'All tickets', project_tickets_path(@project) %></li>
+			<li class="active"><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_project_ticket_path(@project) %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+			<%= render 'form' %>
+		</div>
+	</div>
+</div>
+			

@@ -30,4 +30,9 @@ $(document).ready(function(){
 				}
 			}
 		});
+		
+		$('div.flash div').each(function(idx, elem){
+			$(elem).delay(10000).fadeOut(500);
+		});
+		
 });

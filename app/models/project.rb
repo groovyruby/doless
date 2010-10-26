@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   
   has_many :permissions
   has_many :users, :through=>:permissions
+  #has_many :managers, :class_name => "user", :foreign_key => "user_id", :throught=>:permissions, :where=>['permissions.permission_type>=?', Permission::PERMISSION_TYPES[:manager]
   has_many :tickets
   
   validates :name, :presence=>true
@@ -16,6 +17,14 @@ class Project < ActiveRecord::Base
     p.user = user
     p.permission_type = Permission::PERMISSION_TYPES[:admin]
     p.save
+  end
+  
+  def managers
+    self.users.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:manager]).all
+  end
+  
+  def admins
+    self.users.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:admin]).all
   end
   
 end

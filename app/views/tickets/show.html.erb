@@ -1,31 +1,73 @@
-
-
-<h2>#<%= @ticket.id %> <%= @ticket.title %></h2>
-
-<p>
-  <b><%= t 'tickets.attributes.priority' %>:</b>
-  <%= @ticket.priority_str %>
-  |
-  <b><%= t 'tickets.attributes.status' %>:</b>
-  <%= @ticket.status %>
-  |
-  <b><%= t 'tickets.attributes.responsible' %>:</b>
-  <%= @ticket.responsible_id.blank? ? "-" : @ticket.responsible %>
-</p>
-
-<p>
-  <%= @ticket.description %>
-</p>
-
-<h3>Comments</h3>
-<%= render :partial=>"/ticket_comments/form"%>
-<% for ticket_comment in @ticket.ticket_comments %>
-  <%= render :partial => 'ticket_comment', :locals=>{:ticket_comment=>ticket_comment} %>
+<% content_for :head do%>
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){
+			$('#comment_form_toggler').click(function(){
+				$.cookie('hide_ticket_comment_form', $("#ticket_comment_form").is(':visible'));
+				//alert($("#ticket_comment_form").is(':visible'));
+				$("#ticket_comment_form").toggle(500); 
+				return false;
+			});
+			//alert($.cookie('hide_ticket_comment_form'));
+			if($.cookie('hide_ticket_comment_form')=='true'){
+				$('#ticket_comment_form').hide();
+			};
+		});
+	</script>
 <% end %>
-<br />
-<h3>Options:</h3>
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to 'All tickets', project_tickets_path(@project) %></li>
+			<li class="active"><%= link_to @ticket, project_ticket_path(@project, @ticket) %></li>
+			<li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_project_ticket_path(@project) %></li>
+			<% if @project.managers.member?(current_user)%>
+				<li style="float: right;"><%= link_to t("web-app-theme.edit", :default=> "Edit"), edit_project_ticket_path(@project, @ticket) %></li>
+			<% end %>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+			<table class="table single_ticket_table single_ticket_show">
+				<tbody class="single_ticket">
+				  <tr class="single_ticket_top">
+				    <td align="center" width="50" style="border-bottom: 1px solid #eaeaea;"><div class="ticket_priority ticket_priority_<%= @ticket.priority_str %>"><%= @ticket.priority_str %></div></td>
+				    <td rowspan="2" align="left" style="text-align: left;"><h2><%= link_to @ticket, project_ticket_path(@project, @ticket) %></h2></td>
+				  </tr>
+				  <tr>
+				    <td align="center" width="50"><div class="ticket_status ticket_status_<%= @ticket.status || 'new' %>"><%= @ticket.status || 'new' %></div></td>
+				  </tr>
+				</tbody>
+			</table>
+        
+				<p style="float: right; display: block;">
+				  <b><%= t 'tickets.attributes.responsible' %>:</b>
+				  <%= @ticket.responsible_id.blank? ? "-" : @ticket.responsible %>
+				</p>
 
+				
+				  <%= simple_format @ticket.description %>
+				
 
-<%= link_to t('doless.common.edit'), edit_project_ticket_path(@project, @ticket) %> |
-<%= link_to t('doless.common.back'), project_tickets_path(@project) %>
+				<hr height="1">
+				<span style="float: right; padding: 10px;"><a href="#" id="comment_form_toggler">Toggle form</a></span>
+				<h4><%= image_tag 'icons/comment_add.png', :class=>"header_icon", :alt=>"New comment icon" %>New comment</h4> 
+				
+				<div id="ticket_comment_form" style="display: block;">
+				<%= render :partial=>"/ticket_comments/form"%>
+				</div>
+				<br style="clear: both;"/>
+				<br />
+				<hr height="1">
+				<h4><%= image_tag 'icons/comments.png', :class=>"header_icon", :alt=>"Comments icon" %>Comments</h4>
+				
+				<% for ticket_comment in @ticket.ticket_comments.ordered.all %>
+				  <%= render :partial => 'ticket_comment', :locals=>{:ticket_comment=>ticket_comment} %>
+				<% end %>
+				<br style="clear: both;"/>
+				
 
+    </div>
+  </div>
+</div>
+<% content_for :sidebar, render(:partial => 'ticket_sidebar') -%>

@@ -1,5 +1,7 @@
 class TicketComment < ActiveRecord::Base
   
+  scope :ordered, order('created_at DESC')
+  
   belongs_to :ticket
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   belongs_to :project
@@ -42,6 +44,14 @@ class TicketComment < ActiveRecord::Base
       self.status_to = nil
     end
     self.ticket.save
+  end
+  
+  def priority_to_str
+    Ticket::PRIORITIES.invert[self.priority_to]
+  end
+  
+  def priority_from_str
+    Ticket::PRIORITIES.invert[self.priority_from]
   end
   
 end
