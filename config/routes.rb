@@ -11,7 +11,7 @@ Doless::Application.routes.draw do
       resources :ticket_comments, :only=>[:index, :create, :destroy]
     end
     
-    root :to=>'projects#show'
+    #root :to=>'projects#show'
   end
 
   resource :dashboard
