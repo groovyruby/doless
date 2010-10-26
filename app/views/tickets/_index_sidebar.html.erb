@@ -1,0 +1,21 @@
+<h5><%= t('.filter_priority', :default=>"Filter by priority") %></h5>
+<ul class="sidebar-nav">
+  <% for p in Ticket::PRIORITIES.sort {|a,b| a[1]<=>b[1]} do %>
+    <li><%= link_to p[0], '#' %></li>
+  <% end %>
+</ul>
+<br />
+<h5><%= t('.filter_status', :default=>"Filter by status") %></h5>
+<ul class="sidebar-nav">
+  <li><a>to_be_implemented</a></li>
+</ul>
+<br />
+<h5><%= t('.sort_by', :default=>"Sort by") %></h5>
+<ul class="sidebar-nav">
+  <li><a>Ticket #</a></li>
+  <li><a>Title</a></li>
+  <li><a>Status</a></li>
+  <li><a>Assigned</a></li>
+  <li><a>Reporter</a></li>
+  <li><a>Priority</a></li>
+</ul>

@@ -6,6 +6,11 @@ Doless::Application.routes.draw do
     collection do
       get 'all'
     end
+    
+    resources :tickets do
+      resources :ticket_comments, :only=>[:index, :create, :destroy]
+    end
+    
     root :to=>'projects#show'
   end
 
@@ -69,4 +74,5 @@ Doless::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+  match ':id' => "projects#show", :as=>:short_project
 end

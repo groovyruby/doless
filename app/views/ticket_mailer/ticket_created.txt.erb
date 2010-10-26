@@ -1,0 +1,13 @@
+Hi,
+
+user <%= @ticket.owner.username %> created new ticket:
+<%= @ticket.title %>
+
+<%= @ticket.description %>
+
+
+You can see this ticket (and add new comment or change status) here:
+<%= project_ticket_url(@ticket.project, @ticket) %>
+
+Best regards,
+DolessApp Team

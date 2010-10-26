@@ -1,0 +1,31 @@
+
+
+<h2>#<%= @ticket.id %> <%= @ticket.title %></h2>
+
+<p>
+  <b><%= t 'tickets.attributes.priority' %>:</b>
+  <%= @ticket.priority_str %>
+  |
+  <b><%= t 'tickets.attributes.status' %>:</b>
+  <%= @ticket.status %>
+  |
+  <b><%= t 'tickets.attributes.responsible' %>:</b>
+  <%= @ticket.responsible_id.blank? ? "-" : @ticket.responsible %>
+</p>
+
+<p>
+  <%= @ticket.description %>
+</p>
+
+<h3>Comments</h3>
+<%= render :partial=>"/ticket_comments/form"%>
+<% for ticket_comment in @ticket.ticket_comments %>
+  <%= render :partial => 'ticket_comment', :locals=>{:ticket_comment=>ticket_comment} %>
+<% end %>
+<br />
+<h3>Options:</h3>
+
+
+<%= link_to t('doless.common.edit'), edit_project_ticket_path(@project, @ticket) %> |
+<%= link_to t('doless.common.back'), project_tickets_path(@project) %>
+

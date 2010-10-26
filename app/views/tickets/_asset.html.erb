@@ -1,0 +1,8 @@
+<li>
+  <% if f.object.new_record? %>
+    <%= f.file_field :asset %>
+  <% else %>
+    <%= f.object.asset_file_name %> <%= f.check_box :_destroy %><%= f.label :_destroy, t('.destroy_asset') %>
+  <% end %>
+</li>
+

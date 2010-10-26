@@ -1,0 +1,6 @@
+en:
+  tickets:
+    attributes:
+      priority: "Priority"
+      status: "Status"
+      responsible: "Responsible"

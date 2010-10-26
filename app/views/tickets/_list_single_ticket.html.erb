@@ -1,0 +1,11 @@
+<tbody class="single_ticket">
+  <tr class="single_ticket_top">
+    <td width="50"><%= ticket.priority_str %></td>
+    <td colspan="2" align="left" style="text-align: left;"><h5><%= link_to ticket, project_ticket_path(@project, ticket) %></h5></td>
+  </tr>
+  <tr>
+    <td><%= ticket.status %></td>
+    <td>Created by <%= link_to_profile(ticket.owner, current_user, @project) %> on <%= ticket.created_at %></td>
+    <td><%= ticket.responsible.full_name if ticket.responsible %></td>
+  </tr>
+</tbody>

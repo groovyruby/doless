@@ -20,6 +20,10 @@
       <div id="main-navigation">
         <ul class="wat-cf">
         	<li><%= link_to t('.dashboard', :default=>'Dashboard'), dashboard_path %></li>
+					<% unless @project.blank? %>
+						<li><%= link_to @project.name, @project %></li>
+						<li><%= link_to t('.tickets', :default=>'Tickets'), project_tickets_path(@project) %></li>
+					<% end %>
         </ul>
       </div>
     </div>    

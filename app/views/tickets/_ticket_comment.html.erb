@@ -1,0 +1,24 @@
+<div class="ticket_comment">
+  <b><%= ticket_comment.owner %></b> on <%= ticket_comment.updated_at %>
+  <br/>
+  <i>
+    <% if not ticket_comment.status_from.blank? or not ticket_comment.status_to.blank? %>
+      <b><%= t 'tickets.attributes.status' %>: </b>
+      <%= ticket_comment.status_from %>
+      &raquo; <%= ticket_comment.status_to %>
+    <% end %>
+    <% if not ticket_comment.priority_from.blank? or not ticket_comment.priority_to.blank? %>
+      <b><%= t 'tickets.attributes.priority' %>: </b>
+      <%= Ticket::PRIORITIES[ticket_comment.priority_from] unless ticket_comment.priority_from.blank?  %>
+      &raquo; <%= ticket_comment.priority_to %>
+    <% end %>
+    <% if not ticket_comment.responsible_id_from.blank? or not ticket_comment.responsible_id_to.blank? %>
+      <b><%= t 'tickets.attributes.responsible' %>: </b>
+      <%= ticket_comment.responsible_id_from.blank? ? "-" : ticket_comment.responsible_from %>
+      &raquo; <%= ticket_comment.responsible_id_to.blank? ? "-" : ticket_comment.responsible_to %>
+    <% end %>
+  </i>
+  <% unless ticket_comment.description.blank? %>
+    <p><%= ticket_comment.description %></p>
+  <% end %>
+</div>
