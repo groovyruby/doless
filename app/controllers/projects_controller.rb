@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
   #before_filter :find_project, :only=>[:show]
-  before_filter :find_project_for_management, :only=>[:edit, :update, :destroy]
+  #before_filter :find_project_for_management, :only=>[:edit, :update, :destroy]
   # GET /projects
   # GET /projects.xml
   def all
