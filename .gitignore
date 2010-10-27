@@ -7,3 +7,4 @@ db/schema.rb
 public/stylesheets/all.css
 public/javascripts/all.js
 public/system/**
+Gemfile.lock
