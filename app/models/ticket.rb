@@ -12,7 +12,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :owner, :class_name => "User", :foreign_key => "user_id"
   belongs_to :responsible, :class_name=>"User", :foreign_key => "responsible_id"
 
-  #has_many :assets, :as=>"attachable"
+  has_many :assets, :as=>"attachable"
   has_many :ticket_comments
   
   scope :desc, order('updated_at DESC')
@@ -27,15 +27,15 @@ class Ticket < ActiveRecord::Base
   validates :status, :inclusion=>{:in=>%w( opened fixed invalid closed )}, :if=>proc{|v| not v['status'].blank? }
   validates :priority, :inclusion=>{:in=>Ticket::PRIORITIES.values}
 
-  # accepts_nested_attributes_for :assets, :allow_destroy => true#, :reject_if => proc { |a| a['asset'].blank? and a['_destroy'].blank? }
+  accepts_nested_attributes_for :assets, :allow_destroy => true, :reject_if => proc { |a| a['asset'].blank? }
   accepts_nested_attributes_for :ticket_comments
   
-  #validates_associated :assets
+  validates_associated :assets
   validates_associated :ticket_comments
   
   attr_accessible :title, :description, :status, :priority, :assets_attributes, :ticket_comments_attributes
 
-  # before_save :attach_user_to_assets
+  before_save :attach_user_to_assets
   before_create :set_scoped_id
 
   def to_param
@@ -50,11 +50,11 @@ class Ticket < ActiveRecord::Base
     Ticket::PRIORITIES.invert[self.priority]
   end
 
-  # def attach_user_to_assets
-  #   self.assets.each do |a|
-  #     a.user_id = self.user_id if a.new_record?
-  #   end
-  # end
+  def attach_user_to_assets
+    self.assets.each do |a|
+      a.user_id = self.user_id if a.new_record?
+    end
+  end
 
   def set_scoped_id
     Ticket.transaction do

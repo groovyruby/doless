@@ -8,14 +8,21 @@ class TicketComment < ActiveRecord::Base
   belongs_to :responsible_to, :class_name => "User", :foreign_key => "responsible_id_to"
   belongs_to :responsible_from, :class_name => "User", :foreign_key => "responsible_id_from"
   
+  has_many :assets, :as=>"attachable"
+  
   # TODO: DRY - DUPLICATION with Ticket
   # validate :inclusion_of_responsible_id, :if=>proc{|v| not v['responsible_id_to'].blank? }
   validates :state_to, :inclusion=>{:in => %w( opened fixed invalid closed )}, :if=>proc{|v| not v['state_to'].blank? }
   validates :priority_to, :inclusion=>{:in=>Ticket::PRIORITIES.values}, :if=>proc{|v| not v['priority_to'].blank? }
+  validates_associated :assets
   
-  attr_accessible :description, :priority_to, :responsible_id_to, :status_to
+  accepts_nested_attributes_for :assets, :allow_destroy => true, :reject_if => proc { |a| a['asset'].blank? }
+  
+  
+  attr_accessible :description, :priority_to, :responsible_id_to, :status_to, :assets_attributes
   
   before_save :fill_in_ticket_values
+  before_save :attach_user_to_assets
   
   # TODO: DRY!
   # def inclusion_of_responsible_id
@@ -44,6 +51,12 @@ class TicketComment < ActiveRecord::Base
       self.status_to = nil
     end
     self.ticket.save
+  end
+  
+  def attach_user_to_assets
+    self.assets.each do |a|
+      a.user_id = self.user_id if a.new_record?
+    end
   end
   
   def priority_to_str

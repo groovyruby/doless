@@ -9,7 +9,7 @@ gem 'mysql2'
 
 gem "devise"
 gem "friendly_id", "~> 3.1"
-
+gem "paperclip"
 
 
 group :development, :test do

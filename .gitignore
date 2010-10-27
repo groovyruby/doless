@@ -4,4 +4,6 @@ log/*.log
 tmp/**/*
 config/database.yml
 db/schema.rb
-
+public/stylesheets/all.css
+public/javascripts/all.js
+public/system/**

@@ -2,7 +2,7 @@
   <% content_for :head do %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function(){
-      nested_forms['asset'] = "<%#= generate_template(f, :assets) %>";
+      nested_forms['asset'] = "<%= generate_template(f, :assets) %>";
     });
   </script>
   <% end %>
@@ -41,13 +41,15 @@
     <%= f.select :responsible_id, [['-','']]|users_in_project_for_select(@project), :class=>'text_field select' %>
   </div>
   <% end %>
-  <ul id="assets_fields" style="clear: both;">
-     <%#= f.fields_for :assets do |fp| %>
-         <%#= render :partial=>"asset", :locals=>{:f=>fp}%>
-     <%# end %>
-  </ul>
-  <a name="asset"></a>
-  <%= link_to '+ Add asset', '#asset', :class => "add_nested_item", :rel => "asset" %><br />
+	<div class="group">
+  	<ul id="assets_fields" style="clear: both;">
+	    <%= f.fields_for :assets do |fa| %>
+	    	<%= render :partial=>"asset", :locals=>{:f=>fa}%>
+	    <% end %>
+	  </ul>
+	  <a name="asset"></a>
+  	<%= link_to '+ Add asset', '#asset', :class => "add_nested_item", :rel => "asset" %><br />
+	</div>
 	<br /><br />	
   <div class="group navform wat-cf">
 	  <button class="button" type="submit">

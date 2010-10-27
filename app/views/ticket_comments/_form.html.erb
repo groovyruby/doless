@@ -1,4 +1,11 @@
 <%= form_for( [@project, @ticket, @ticket_comment], :html=>{:multipart=>true}) do |f| %>
+	<% content_for :head do %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      nested_forms['asset'] = "<%= generate_template(f, :assets) %>";
+    });
+  </script>
+  <% end %>
   <% if @ticket_comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ticket_comment.errors.count, "error") %> prohibited this ticket_comment from being saved:</h2>
@@ -30,6 +37,20 @@
 				<td>
     			<%= f.label :responsible_id_to %>:<br />
 			    <%= f.select :responsible_id_to, [['-','']]|users_in_project_for_select(@project) %>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<div class="group">
+				  	<ul id="assets_fields" style="clear: both;">
+					    <%= f.fields_for :assets do |fa| %>
+					    	<%= render :partial=>"asset", :locals=>{:f=>fa}%>
+					    <% end %>
+					  </ul>
+					  <a name="asset"></a>
+				  	<%= link_to '+ Add asset', '#asset', :class => "add_nested_item", :rel => "asset" %><br />
+					</div>
+					
 				</td>
 			</tr>
 			<tr>
