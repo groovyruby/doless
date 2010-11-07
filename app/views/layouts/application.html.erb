@@ -24,10 +24,10 @@
       </div>
       <div id="main-navigation">
         <ul class="wat-cf">
-        	<li class="<%= controller.controller_path == 'dashboards' ? 'active' : '' %>"><%= link_to t('.dashboard', :default=>'Dashboard'), dashboard_path %></li>
+        	<li class="<%= controller.controller_path == 'dashboards' ? 'active' : '' %>"><%= link_to t('doless.modules.dashboard', :default=>'Dashboard'), dashboard_path %></li>
 					<% if not @project.blank? and not @project.id.blank? %>
 						<li class="<%= controller.controller_path == 'projects' ? 'active' : '' %>"><%= link_to @project.name, @project %></li>
-						<li class="<%= controller.controller_path == 'tickets' ? 'active' : '' %>"><%= link_to t('.tickets', :default=>'Tickets'), project_tickets_path(@project) %></li>
+						<li class="<%= controller.controller_path == 'tickets' ? 'active' : '' %>"><%= link_to t('doless.modules.tickets', :default=>'Tickets'), project_tickets_path(@project) %></li>
 					<% end %>
         </ul>
       </div>

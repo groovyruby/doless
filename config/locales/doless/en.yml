@@ -3,4 +3,7 @@ en:
     common:
       edit: "Edit"
       back: "Back"
-        
+    modules:
+      dashboard: Dashboard
+      projects: Projects
+      tickets: Tickets

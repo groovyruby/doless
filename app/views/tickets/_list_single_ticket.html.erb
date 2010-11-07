@@ -6,7 +6,7 @@
 	  </tr>
 	  <tr class="single_ticket_bottom">
 	    <td align="center" width="50"><div class="ticket_status ticket_status_<%= ticket.status || 'new' %>"><%= ticket.status || 'new' %></div></td>
-	    <td class="ticket_modification">Last modification by <%= link_to_profile(ticket.owner, current_user, @project) %> on <%= ticket.created_at %></td>
+	    <td class="ticket_modification"><%= t '.last_modification', :default=>"Last modification by" %> <%= link_to_profile(ticket.owner, current_user, @project) %> <%= t '.on_date', :default=>"on" %> <%= ticket.created_at %></td>
 	    <td class="ticket_responsible"><%= t('.assigned', :default=>"Assigned") if ticket.responsible %> <%= ticket.responsible.full_name if ticket.responsible %></td>
 	  </tr>
 	</tbody>

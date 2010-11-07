@@ -1,0 +1,9 @@
+pl:
+  doless:
+    common:
+      edit: "Edytuj"
+      back: "Cofnij"
+    modules:
+      dashboard: Kokpit
+      projects: Projekty
+      tickets: Zgłoszenia

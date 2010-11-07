@@ -1,0 +1,6 @@
+pl:
+  tickets:
+    attributes:
+      priority: "Ważność"
+      status: "Status"
+      responsible: "Osoba odpowiedzialna"

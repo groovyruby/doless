@@ -1,0 +1,16 @@
+pl:
+  dashboards:
+    sidebar:
+      your_projects: "Twoje projekty"
+      all_projects: Wszystkie projekty
+    show:
+      new_project: "Nowy projekt"
+      dashboard: "Kokpit"
+  tickets:
+    index:
+      all_tickets: Wszystki zgłoszenia
+      new: Dodaj nowe zgłoszenie
+    list_single_ticket:
+      last_modification: Ostatnia modyfikacja
+      on_date: dnia
+      

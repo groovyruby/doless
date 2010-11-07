@@ -17,7 +17,7 @@
 <div class="block">
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li class="first"><%= link_to 'All tickets', project_tickets_path(@project) %></li>
+      <li class="first"><%= link_to t("tickets.index.all_tickets", :default => "All tickets"), project_tickets_path(@project) %></li>
 			<li class="active"><%= link_to @ticket, project_ticket_path(@project, @ticket) %></li>
 			<li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_project_ticket_path(@project) %></li>
 			<% if @project.managers.member?(current_user)%>

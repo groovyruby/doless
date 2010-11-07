@@ -27,15 +27,15 @@
 				</td>
 			<tr>
 				<td width="33%">
-    			<%= f.label :priority_to %>:<br />
+    			<%= f.label :priority_to, t('tickets.attributes.priority') %>:<br />
     			<%= f.select :priority_to, Ticket::PRIORITIES %>
 				</td>
 				<td width="33%">
-			    <%= f.label :status_to %>:<br />
+			    <%= f.label :status_to, t('tickets.attributes.status') %>:<br />
 			    <%= f.select :status_to, Ticket.statuses_for_select %>
 				</td>
 				<td>
-    			<%= f.label :responsible_id_to %>:<br />
+    			<%= f.label :responsible_id_to, t('tickets.attributes.responsible') %>:<br />
 			    <%= f.select :responsible_id_to, [['-','']]|users_in_project_for_select(@project) %>
 				</td>
 			</tr>
