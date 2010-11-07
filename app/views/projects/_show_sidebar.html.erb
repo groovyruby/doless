@@ -1,0 +1,8 @@
+<div class="block">
+  <h3><%= t('.last_assets', :default=>'Last assets')%> (<%= t('.all_assets', :default=>'All assets') %>)</h3>
+  <ul class="navigation">
+		<% for a in @assets %>
+    	<li><%= link_to a.asset_file_name, a.asset.url %></li>
+		<% end %>
+  </ul>
+</div>

@@ -22,7 +22,7 @@ class TicketsController < ApplicationController
     @ticket_comment.status_to = @ticket.status
     @ticket_comment.responsible_id_to = @ticket.responsible_id
     @ticket_comment.priority_to = @ticket.priority
-    @assets = @project.assets.where(:attachable_type=>[Ticket.to_s, TicketComment.to_s]).where(:attachable_id=>([@ticket.id]|@ticket.ticket_comments.all.map{|tc|tc.id})).order('created_at desc').all
+    @assets = @project.assets.where(:attachable_type=>[Ticket.to_s, TicketComment.to_s]).where(:attachable_id=>([@ticket.id]|@ticket.ticket_comments.all.map{|tc|tc.id})).order('updated_at desc').all
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @ticket }

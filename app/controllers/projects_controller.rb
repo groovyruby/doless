@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.xml
   def show
     @project = current_user.projects.find(params[:id])
-    
+    @assets = @project.assets.order('updated_at DESC').all
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @project }
