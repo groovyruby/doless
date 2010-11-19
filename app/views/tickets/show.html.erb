@@ -48,14 +48,16 @@
 				
 				  <%= simple_format @ticket.description %>
 				
-
-				<hr height="1">
-				<span style="float: right; padding: 10px;"><a href="#" id="comment_form_toggler">Toggle form</a></span>
-				<h4><%= image_tag 'icons/comment_add.png', :class=>"header_icon", :alt=>"New comment icon" %>New comment</h4> 
+        <% unless @ticket.closed? %>
+			  	<hr height="1">
+  				<span style="float: right; padding: 10px;"><a href="#" id="comment_form_toggler">Toggle form</a></span>
+  				<h4><%= image_tag 'icons/comment_add.png', :class=>"header_icon", :alt=>"New comment icon" %>New comment</h4> 
 				
-				<div id="ticket_comment_form" style="display: block;">
-				<%= render :partial=>"/ticket_comments/form"%>
-				</div>
+				
+  				<div id="ticket_comment_form" style="display: block;">
+  				<%= render :partial=>"/ticket_comments/form"%>
+  				</div>
+				<% end %>
 				<br style="clear: both;"/>
 				<br />
 				<hr height="1">

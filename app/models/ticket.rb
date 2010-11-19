@@ -66,6 +66,10 @@ class Ticket < ActiveRecord::Base
     #self.is_closed = true
   end
   
+  def closed?
+    %w( invalid closed ).member?(self.status)
+  end
+  
   # def inclusion_of_responsible_id
   #   unless Project::assigned_users_for_validation(self.project_id).member? self.responsible_id
   #     errors.add(:responsible_id, I18n.t('doless.tickets.errors.responsible_invalid'))
