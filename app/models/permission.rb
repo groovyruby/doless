@@ -1,7 +1,7 @@
 class Permission < ActiveRecord::Base
   
-  PERMISSION_TYPES = {:admin=>1000, :manager=>100, :user=>10, :client=>1}
-  
+  PERMISSION_TYPES = {:admin=>1000, :leader=>100, :user=>10, :client=>1}
+
   belongs_to :project
   belongs_to :user
   

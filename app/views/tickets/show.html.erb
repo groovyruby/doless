@@ -20,7 +20,7 @@
       <li class="first"><%= link_to t("tickets.index.all_tickets", :default => "All tickets"), project_tickets_path(@project) %></li>
 			<li class="active"><%= link_to @ticket, project_ticket_path(@project, @ticket) %></li>
 			<li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_project_ticket_path(@project) %></li>
-			<% if @project.managers.member?(current_user)%>
+			<% if @project.leaders.member?(current_user)%>
 				<li style="float: right;"><%= link_to t("web-app-theme.edit", :default=> "Edit"), edit_project_ticket_path(@project, @ticket) %></li>
 			<% end %>
     </ul>

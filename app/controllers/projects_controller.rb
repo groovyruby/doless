@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @project = current_user.projects.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:manager]).find(params[:id])
+    @project = current_user.projects.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:leader]).find(params[:id])
   end
 
   # POST /projects
@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.xml
   def update
-    @project = current_user.projects.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:manager]).find(params[:id])
+    @project = current_user.projects.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:leader]).find(params[:id])
     respond_to do |format|
       if @project.update_attributes(params[:project])
         format.html { redirect_to(@project, :notice => 'Project was successfully updated.') }
@@ -75,7 +75,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.xml
   def destroy
-    @project = current_user.projects.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:manager]).find(params[:id])
+    @project = current_user.projects.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:leader]).find(params[:id])
     @project.destroy
 
     respond_to do |format|

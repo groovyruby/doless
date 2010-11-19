@@ -15,8 +15,9 @@ gem "paperclip"
 group :development, :test do
 	gem "rspec-rails", ">= 2.0.1"
 	gem "steak", ">= 1.0.0.rc.1"
+	gem "remarkable_activerecord", '>=4.0.0.alpha4'
 	gem "capybara"
-	gem 'web-app-theme', '>= 0.6.2'
+	gem 'web-app-theme', '>= 0.6.2', :git => 'git://github.com/groovyruby/web-app-theme.git'
 end
 
 

@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe User do
+  should_validate_presence_of :first_name
+  should_validate_presence_of :last_name
+  should_validate_presence_of :email
+
   before(:each) do
     @valid_params = {:first_name=>"john", :last_name=>"bar", :email=>"test_email@dolessapp.com", :password=>"qwe123", :password_confirmation=>"qwe123"}
   end

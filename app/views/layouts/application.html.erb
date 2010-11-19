@@ -32,7 +32,8 @@
             <li class="in_production"><a href="#">Todo</a></li>
             <li class="in_production"><a href="#">Work Report</a></li>
             <li class="in_production"><a href="#">Dokumenty</a></li>
-            <li class="in_production"><a href="#">Forum</a></li>
+            <li class="<%= controller.controller_path == 'forum' ? 'active' : '' %>"><%= link_to t('doless.modules.forum', :default=>'Forum'), project_topics_path(@project) %></li>
+
             <li class="in_production"><a href="#">Snippety?</a></li>
             <li class="in_production"><a href="#">Pliki</a></li>
 					<% end %>

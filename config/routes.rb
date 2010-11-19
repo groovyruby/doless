@@ -1,19 +1,23 @@
 Doless::Application.routes.draw do
   
+  scope ':project_id', :as=>'project' do
 
-  
-  resources :projects do
-    collection do
-      get 'all'
-    end
     
     resources :tickets do
       resources :ticket_comments, :only=>[:index, :create, :destroy]
     end
+    resources :topics do
+      resources :posts, :only=>[:index, :create, :destroy]
+    end
     
     #root :to=>'projects#show'
   end
-
+  resources :projects do
+    collection do
+      get 'all'
+    end
+  end
+  
   resource :dashboard
 
   devise_for :users

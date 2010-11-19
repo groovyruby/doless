@@ -2,19 +2,10 @@ require 'spec_helper'
 
 describe Project do
   fixtures :users
+  should_validate_presence_of :name
   
   before(:each) do
     @valid_params = {:name=>"test groovy project"}
-  end
-  
-  it "should be valid when valid params are given" do
-    p = Project.new(@valid_params)
-    p.should be_valid
-  end
-  
-  it "should not be valid when invalid parameters are used" do
-    p = Project.new
-    p.should_not be_valid
   end
   
   context "permissions" do 

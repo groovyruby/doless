@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     end
     
     def find_project_for_management
-      @project = current_user.projects.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:manager]).find(params[:project_id])
+      @project = current_user.projects.where('permissions.permission_type>=?', Permission::PERMISSION_TYPES[:leader]).find(params[:project_id])
     end
   
   private 

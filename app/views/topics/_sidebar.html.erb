@@ -1,0 +1,17 @@
+<div class="block">
+  <h3><%= t('.observed_by', :default=>'Topic accessible by')%></h3>
+  <ul class="navigation">
+		<% for u in (@topic.project.users | @project.leaders) %>
+    	<li><%= link_to u.full_name, '#' %></li>
+		<% end %>
+  </ul>
+</div>
+
+<div class="block">
+  <h3><%= t('.attached_assets', :default=>'Attached assets')%></h3>
+  <ul class="navigation">
+		<% for a in @assets %>
+			<li><%= link_to a.asset_file_name, a.asset.url%></li>
+		<% end %>
+  </ul>
+</div>
