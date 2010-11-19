@@ -25,9 +25,16 @@
       <div id="main-navigation">
         <ul class="wat-cf">
         	<li class="<%= controller.controller_path == 'dashboards' ? 'active' : '' %>"><%= link_to t('doless.modules.dashboard', :default=>'Dashboard'), dashboard_path %></li>
+          <li class="in_production"><a href="#">Statusy</a></li>
 					<% if not @project.blank? and not @project.id.blank? %>
 						<li class="<%= controller.controller_path == 'projects' ? 'active' : '' %>"><%= link_to @project.name, @project %></li>
 						<li class="<%= controller.controller_path == 'tickets' ? 'active' : '' %>"><%= link_to t('doless.modules.tickets', :default=>'Tickets'), project_tickets_path(@project) %></li>
+            <li class="in_production"><a href="#">Todo</a></li>
+            <li class="in_production"><a href="#">Work Report</a></li>
+            <li class="in_production"><a href="#">Dokumenty</a></li>
+            <li class="in_production"><a href="#">Forum</a></li>
+            <li class="in_production"><a href="#">Snippety?</a></li>
+            <li class="in_production"><a href="#">Pliki</a></li>
 					<% end %>
         </ul>
       </div>

@@ -79,3 +79,7 @@ table tr.single_ticket_bottom td{
 .single_comment_table p{
   margin: 0;
 }
+
+.in_production a{
+  color: gray !important;
+}
