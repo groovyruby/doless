@@ -50,6 +50,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new(params[:topic])
     @topic.project = @project
     @topic.user = current_user
+    @topic.posts.first.user = current_user
     respond_to do |format|
       if @topic.save
         format.html { redirect_to([@project, @topic], :notice => 'Topic was successfully created.') }
