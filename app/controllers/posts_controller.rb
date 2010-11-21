@@ -42,6 +42,6 @@ class PostsController < ApplicationController
   
   private
     def find_topic
-      @topic = @project.topics.find_by_scoped_id!(params[:topic_id])
+      @topic = @project.topics.find(params[:topic_id])
     end
 end

@@ -17,8 +17,11 @@ class TopicsController < ApplicationController
   # GET /topics/1.xml
   def show
     @topic = @project.topics.find(params[:id])
+    # TODO: fix this
+    #return(redirect_to(project_topics_url(@project))) if not @project.leaders.member?(current_user) or not @topic.users.member?(current_user)
     @assets = @project.assets.where(:attachable_type=>[Topic.to_s, Post.to_s]).where(:attachable_id=>([@topic.id]|@topic.posts.all.map{|p|p.id})).order('updated_at desc').all
 
+    @post = @topic.posts.new
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @topic }

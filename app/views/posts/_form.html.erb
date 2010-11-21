@@ -22,7 +22,6 @@
 		<table class="table post_form">
 			<tr>
 				<td colspan="3">
-					<%= f.label :body %><br />
 			    <%= f.text_area :body, :size=>"60x5" %>
 				</td>
 			<tr>
@@ -42,7 +41,7 @@
 			<tr>
 				<td colspan="3" align="right" style="padding-top: 10px;">
 					<button class="button" type="submit"  style="float: right;">
-				    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t(".create_new_comment", :default => "Create new comment") %>
+				    <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t(".create_new_post", :default => "Create new post") %>
 				  </button>
 				</td>
 			</tr>

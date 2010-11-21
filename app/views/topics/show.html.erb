@@ -8,25 +8,29 @@
   </div>          
   <div class="content">
     <div class="inner">
-      
-        <p>
-          <b><%= t("activerecord.attributes.topic.title", :default => t("activerecord.labels.title", :default => "Title")) %>:</b>
-          <%= @topic.title %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.topic.user_id", :default => t("activerecord.labels.user_id", :default => "User")) %>:</b>
-          <%= @topic.user_id %>
-        </p>
-
-        <p>
-          <b><%= t("activerecord.attributes.topic.project_id", :default => t("activerecord.labels.project_id", :default => "Project")) %>:</b>
-          <%= @topic.project_id %>
-        </p>
+      <h3><%= @topic.title %></h3>
+      <ul class="list">
+        <% for p in @topic.posts  %>
+          <li>
+            <div class="left ">
+              Ava
+            </div>
+            <div class="item">
+              <p><%= p.body %></p>
+              <p><%= p.user %> (<%= p.created_at %>)</p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+      <h4><%= image_tag 'icons/comment_add.png', :class=>"header_icon", :alt=>"New comment icon" %>New post</h4> 
+  		<div id="post_form" style="display: block;">
+  			<%= render :partial=>"/posts/form"%>
+  		</div>
       <div class="wat-cf">
         <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_project_topic_path(@project, @topic), :class => "button" %>
         <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), project_topic_path(@project, @topic), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
-      </div>      
+      </div>
+
     </div>
   </div>
 </div>

@@ -8,34 +8,24 @@
   <div class="content">          
     <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Topics</h2>
     <div class="inner">
-      <table class="table">
-        <tr>             
-          <th class="first">ID</th>
-                    <th>
-            <%= t("activerecord.attributes.topic.title", :default => t("activerecord.labels.title", :default => "Title")) %>
-          </th>
-                    <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
-          <th class="last">&nbsp;</th>
-        </tr>
-        <% @topics.each do |topic| -%>
-        <tr class="<%= cycle("odd", "even") %>">
-          <td>
-            <%= topic.id %>
-          </td>
-                    <td>
-            <%= link_to topic.title, project_topic_path(@project, topic) %>
-          </td>
-                    <td>
-            <%= topic.created_at %>
-          </td>
-          <td class="last">
-            <%= link_to "#{t("web-app-theme.show", :default => "Show")}", project_topic_path(@project, topic) %> |
-            <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_project_topic_path(@project, topic) %> |
-            <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", project_topic_path(@project, topic), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
-          </td>
-        </tr>          
-        <% end -%>
-      </table>
+      <ul class="list">
+        <% for topic in @topics %>
+        <li>
+          <div class="left">
+            Ava
+          </div>
+          <div class="item">
+            <h4><%= link_to topic.title, project_topic_path(@project, topic) %></h4>
+            <p>
+
+            </p>
+            <p>
+              Utworzono: <%= topic.created_at %>, ostatnia post: <%= topic.posts.last.user %> (<%= topic.posts.last.created_at %>)
+            </p>
+          </div>
+        </li>
+        <% end %>
+      </ul>
       <div class="actions-bar wat-cf">
         <div class="actions">
         </div>
