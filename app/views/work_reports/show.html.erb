@@ -1,0 +1,34 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", work_reports_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_work_report_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", work_report_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.work_report.report", :default => t("activerecord.labels.report", :default => "Report")) %>:</b>
+          <%= @work_report.report %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.work_report.user_id", :default => t("activerecord.labels.user_id", :default => "User")) %>:</b>
+          <%= @work_report.user_id %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.work_report.project_id", :default => t("activerecord.labels.project_id", :default => "Project")) %>:</b>
+          <%= @work_report.project_id %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_work_report_path(@work_report), :class => "button" %> 
+        <%= link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), work_report_path(@work_report), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

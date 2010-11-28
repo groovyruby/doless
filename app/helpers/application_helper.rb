@@ -25,4 +25,8 @@ module ApplicationHelper
     owner.full_name
   end
   
+  def insert_links_to_tickets_in_text(text)
+    raw text.sub(/\#(\d+)/) { |s| @project.tickets.find_by_scoped_id($1) ? link_to("##{$1}", project_ticket_path(@project, $1)) : "##{$1}" }
+  end
+  
 end

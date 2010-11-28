@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   #has_many :managers, :class_name => "user", :foreign_key => "user_id", :throught=>:permissions, :where=>['permissions.permission_type>=?', Permission::PERMISSION_TYPES[:leader]
   has_many :tickets
   has_many :topics
-  
+  has_many :work_reports
   validates :name, :presence=>true
   
   accepts_nested_attributes_for :permissions, :allow_destroy=>true, :reject_if=>proc {|p| p['permission_type'] == Permission::PERMISSION_TYPES[:admin] }

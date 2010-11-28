@@ -1,7 +1,6 @@
 Doless::Application.routes.draw do
   
   scope ':project_id', :as=>'project' do
-
     
     resources :tickets do
       resources :ticket_comments, :only=>[:index, :create, :destroy]
@@ -9,7 +8,7 @@ Doless::Application.routes.draw do
     resources :topics do
       resources :posts, :only=>[:index, :create, :destroy]
     end
-    
+    resources :work_reports
     #root :to=>'projects#show'
   end
   resources :projects do

@@ -30,7 +30,7 @@
 						<li class="<%= controller.controller_path == 'projects' ? 'active' : '' %>"><%= link_to @project.name, @project %></li>
 						<li class="<%= controller.controller_path == 'tickets' ? 'active' : '' %>"><%= link_to t('doless.modules.tickets', :default=>'Tickets'), project_tickets_path(@project) %></li>
             <li class="in_production"><a href="#">Todo</a></li>
-            <li class="in_production"><a href="#">Work Report</a></li>
+            <li class="<%= controller.controller_path == 'work_reports' ? 'active' : '' %>"><%= link_to t('doless.modules.work_reports', :default=>'Work reports'), project_work_reports_path(@project) %></li>
             <li class="in_production"><a href="#">Dokumenty</a></li>
             <li class="<%= controller.controller_path == 'forum' ? 'active' : '' %>"><%= link_to t('doless.modules.forum', :default=>'Forum'), project_topics_path(@project) %></li>
 

@@ -1,0 +1,16 @@
+<%= form_for [@project, @work_report], :html => { :class => :form } do |f| -%>
+
+  <div class="group">
+    <%= f.label :report, t("activerecord.attributes.work_report.report", :default => "Report"), :class => :label %>
+    <%= f.text_area :report, :class => 'text_area', :size=>"60x2" %>
+    <span class="description"><% t("web-app-theme.descriptions.work_report.report", :default => "") %></span>
+  </div>
+
+  <div class="group navform wat-cf">
+    <button class="button" type="submit">
+      <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+    </button>
+    <span class="text_button_padding"><%= t("web-app-theme.or", :default => "or") %></span>
+    <%= link_to t("web-app-theme.cancel", :default => "Cancel"), work_reports_path, :class => "text_button_padding link_button" unless f.object.new_record? %>
+  </div>
+<% end -%>

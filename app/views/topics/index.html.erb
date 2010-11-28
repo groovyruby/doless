@@ -19,9 +19,8 @@
             <p>
 
             </p>
-            <p>
-              Utworzono: <%= topic.created_at %>, ostatnia post: <%= topic.posts.last.user %> (<%= topic.posts.last.created_at %>)
-            </p>
+              <small>Utworzono: <%= topic.created_at %>, ostatnia post: <%= topic.posts.last.user %> (<%= topic.posts.last.created_at %>)</small>
+            
           </div>
         </li>
         <% end %>

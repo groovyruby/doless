@@ -1,0 +1,36 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", project_work_reports_path(@project)  %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title">
+      <%= t("web-app-theme.all", :default => "All")  %> WorkReports</h2>
+    <div class="inner">
+      <%= render :partial=>"form" %>
+      <ul class="list">
+        <% for wr in @work_reports %>
+          <li>
+            <div class="left">
+              AVA
+            </div>
+            <div class="item">
+              <p>
+                <%= insert_links_to_tickets_in_text(wr.report) %>
+              </p>
+              <small><%= wr.user %> @ <%= wr.created_at %></small>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+     <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
