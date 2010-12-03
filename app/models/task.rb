@@ -9,4 +9,13 @@ class Task < ActiveRecord::Base
   def to_s
     self.title
   end
+  
+  def switch_completed
+    self.is_completed = !self.is_completed
+  end
+  
+  def switch_completed!
+    switch_completed
+    save
+  end
 end
