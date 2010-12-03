@@ -19,6 +19,7 @@ group :development, :test do
 	gem "capybara"
 	gem 'web-app-theme', '>= 0.6.2', :git => 'git://github.com/groovyruby/web-app-theme.git'
 	gem 'factory_girl_rails'
+	gem 'mocha'
 end
 
 
