@@ -1,9 +1,17 @@
 Doless::Application.routes.draw do
   
-  resources :tasks
+  resources :tasks do
+    member do
+      get 'switch_completed'
+    end
+  end
 
   scope ':project_id', :as=>'project' do
-    resources :tasks
+    resources :tasks do
+      member do
+        get 'switch_completed'
+      end
+    end
     
     resources :tickets do
       resources :ticket_comments, :only=>[:index, :create, :destroy]

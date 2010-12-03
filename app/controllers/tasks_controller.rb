@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.xml
   def index
-    @tasks = context.all
+    @tasks = context.active.all
     @task = Task.new
     respond_to do |format|
       format.html # index.html.erb
@@ -92,6 +92,10 @@ class TasksController < ApplicationController
   def switch_completed
     @task = context.find(params[:id])
     @task.switch_completed!
+    respond_to do |format|
+      format.html { redirect_to(tasks_url) }
+      format.js { render :json=>@task }
+    end
   end
   
   private

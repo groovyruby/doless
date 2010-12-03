@@ -1,4 +1,8 @@
 class Task < ActiveRecord::Base
+  
+  scope :active, where('is_completed=?', false)
+  scope :completed, where('is_completed=?', true)
+  
   belongs_to :project
   belongs_to :user
   

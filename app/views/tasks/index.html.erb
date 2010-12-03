@@ -1,5 +1,7 @@
 <%= content_for :head do %>
 <script type="text/javascript" charset="utf-8">
+  var form_url = '<%= tasks_path(:project_id=>@project.to_param) %>';
+  var completed_url = '<%= switch_completed_task_path(-1, :project_id=>@project.to_param) %>'
   function add_new_task(resp, status, xhr, form)
   {
     if(status=='success'){
@@ -7,9 +9,18 @@
       $(elem).children('.task_title').text(resp.task.title);
     }
   };
+  function switch_task_status()
+  {
+    var id = $(this).attr('value');
+    var replace_url = completed_url.replace(/\-1/, id);
+    jQuery.getJSON(replace_url, function(data, test_status){
+      $('#task_id_'+id).fadeOut();
+    });
+  }
   var single_task = "<%= escape_javascript(render(:partial=>@task)) %>";
   $(document).ready(function(){
     $('#new_task').ajaxForm({success: add_new_task, dataType: 'json', clearForm: true});
+    $('.single_task_wrapper input[type="checkbox"]').live('click', switch_task_status);
   });
 </script>
 <% end %>
