@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe WorkReport do
-  pending "add some examples to (or delete) #{__FILE__}"
+  should_validate_presence_of :report
+  
 end

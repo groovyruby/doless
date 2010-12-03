@@ -3,6 +3,7 @@ Doless::Application.routes.draw do
   resources :tasks
 
   scope ':project_id', :as=>'project' do
+    resources :tasks
     
     resources :tickets do
       resources :ticket_comments, :only=>[:index, :create, :destroy]

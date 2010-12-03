@@ -97,7 +97,7 @@ class TasksController < ApplicationController
   private
     
     def context
-      @project.blank? ? Task : @project.tasks
+      @project.blank? ? current_user.tasks : @project.tasks
     end
     
     def redirect
