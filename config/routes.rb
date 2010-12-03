@@ -1,5 +1,7 @@
 Doless::Application.routes.draw do
   
+  resources :tasks
+
   scope ':project_id', :as=>'project' do
     
     resources :tickets do

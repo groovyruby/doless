@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TopicsController do
+describe TasksController do
 
   
 

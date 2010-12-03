@@ -2,13 +2,14 @@
 <html>
 <head>
   <title>Doless</title>
-  <%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", :cache => false %>
-  <%= javascript_include_tag 'jquery/jquery.min', 'jquery/jquery.cookie', 'rails', 'application', :cache => true %>
+  <%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", "style", :cache => false %>
+  <%= javascript_include_tag 'jquery/jquery.min', 'jquery/jquery.cookie', 'jquery/jquery.form', 'rails', 'application', :cache => true %>
   <%= csrf_meta_tag %>
 	<%= yield(:head) || "" %>
 	<script type="text/javascript" charset="utf-8">
 		$(document).ready(function(){
 			
+			<%= yield(:body_onload) || "" %>
 		});
 	</script>
 </head>
@@ -26,10 +27,10 @@
         <ul class="wat-cf">
         	<li class="<%= controller.controller_path == 'dashboards' ? 'active' : '' %>"><%= link_to t('doless.modules.dashboard', :default=>'Dashboard'), dashboard_path %></li>
           <li class="in_production"><a href="#">Statusy</a></li>
+          <li class="<%= controller.controller_path == 'tasks' ? 'active' : '' %>"><%= link_to t('doless.modules.tasks', :default=>'Tasks'), tasks_path%></li>
 					<% if not @project.blank? and not @project.id.blank? %>
 						<li class="<%= controller.controller_path == 'projects' ? 'active' : '' %>"><%= link_to @project.name, @project %></li>
 						<li class="<%= controller.controller_path == 'tickets' ? 'active' : '' %>"><%= link_to t('doless.modules.tickets', :default=>'Tickets'), project_tickets_path(@project) %></li>
-            <li class="in_production"><a href="#">Todo</a></li>
             <li class="<%= controller.controller_path == 'work_reports' ? 'active' : '' %>"><%= link_to t('doless.modules.work_reports', :default=>'Work reports'), project_work_reports_path(@project) %></li>
             <li class="in_production"><a href="#">Dokumenty</a></li>
             <li class="<%= controller.controller_path == 'forum' ? 'active' : '' %>"><%= link_to t('doless.modules.forum', :default=>'Forum'), project_topics_path(@project) %></li>

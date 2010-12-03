@@ -1,0 +1,49 @@
+
+/* TASKS */
+li.single_task_wrapper {
+    /*background: url(/imgs/v2/taskbar_bg.png) no-repeat 0 0;*/
+    background: -moz-linear-gradient(top,#EEE,#DFDFDF);
+    background: -webkit-gradient(linear,left top,left bottom,from(#EEE),to(#DFDFDF));
+    cursor: pointer;
+    width: 730px;
+    height: 25px;
+    padding-top: 5px;
+    margin: 0 10px 2px 0;
+    list-style-type: none;
+    padding-left: 0;
+    padding-right: 0;
+    color: black;
+    font-size: 12px;
+    -moz-box-shadow: 0 1px 0 #AAA;
+    -webkit-box-shadow: 0 1px 1px #999;
+    box-shadow: 0 1px 1px #999;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-top-left-radius: 5px 5px;
+    border-top-right-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+    
+}
+li.single_task_wrapper > div{
+    float: left;
+}
+li.single_task_wrapper .checkbox_left{
+    padding-left: 10px;
+    margin-top: 1px;
+    margin-right: 5px;
+}
+li.single_task_wrapper .task_title{
+    padding-left: 10px;
+    color: #505050;
+    height: 16px;
+    line-height: 16px;
+    margin-top: 2px;
+    width: 465px;
+    overflow: hidden;
+}

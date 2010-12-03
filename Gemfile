@@ -18,6 +18,7 @@ group :development, :test do
 	gem "remarkable_activerecord", '>=4.0.0.alpha4'
 	gem "capybara"
 	gem 'web-app-theme', '>= 0.6.2', :git => 'git://github.com/groovyruby/web-app-theme.git'
+	gem 'factory_girl_rails'
 end
 
 

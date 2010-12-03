@@ -1,0 +1,43 @@
+<%= content_for :head do %>
+<script type="text/javascript" charset="utf-8">
+  function add_new_task(resp, status, xhr, form)
+  {
+    if(status=='success'){
+      var elem = $(single_task).appendTo('ul#task_items').fadeIn();
+      $(elem).children('.task_title').text(resp.task.title);
+    }
+  };
+  var single_task = "<%= escape_javascript(render(:partial=>@task)) %>";
+  $(document).ready(function(){
+    $('#new_task').ajaxForm({success: add_new_task, dataType: 'json', clearForm: true});
+  });
+</script>
+<% end %>
+
+
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to t(".all_tasks", :default => "All tasks"), tasks_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_task_path(:project_id=>@project.to_param) %></li>
+    </ul>
+  </div>          
+  <div class="content">        
+    <%= render :partial=>"form"%>  
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Tasks</h2>
+    <div class="inner">
+      <ul class="task_items" id="task_items">
+        <% @tasks.each do |task| %>
+          <%= render :partial=>task%>
+        <% end %>
+      </ul>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'index_sidebar') -%>
