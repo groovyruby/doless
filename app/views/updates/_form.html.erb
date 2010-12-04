@@ -1,4 +1,4 @@
-<%= form_for [@update], :html => { :class => :form } do |f| -%>
+<%= form_for @update, :url=>updates_path(:project_id=>@project.to_param), :html => { :class => :form } do |f| -%>
 
   <div class="group">
     <%= f.label :body, t("activerecord.attributes.update.body", :default => "Body"), :class => :label %>

@@ -27,3 +27,7 @@ end
 Factory.define :task_with_project, :parent=>:task do |f|
   f.association :project, :factory=>:project
 end
+
+Factory.define :update do |f|
+  f.body "lorem ipsum"
+end
