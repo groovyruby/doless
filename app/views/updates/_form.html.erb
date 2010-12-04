@@ -1,0 +1,14 @@
+<%= form_for [@update], :html => { :class => :form } do |f| -%>
+
+  <div class="group">
+    <%= f.label :body, t("activerecord.attributes.update.body", :default => "Body"), :class => :label %>
+    <%= f.text_area :body, :class => 'text_area', :size=>"60x2" %>
+    <span class="description"><% t("web-app-theme.descriptions.update.body", :default => "") %></span>
+  </div>
+
+  <div class="group navform wat-cf">
+    <button class="button" type="submit">
+      <%= image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}") %> <%= t("web-app-theme.save", :default => "Save") %>
+    </button>
+  </div>
+<% end -%>

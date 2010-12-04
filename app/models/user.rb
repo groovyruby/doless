@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :permissions
   has_many :projects, :through=>:permissions
   has_many :tasks
+  has_many :upates
   
   validates :first_name, :presence=>true
   validates :last_name, :presence=>true

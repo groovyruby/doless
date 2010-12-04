@@ -1,5 +1,7 @@
 Doless::Application.routes.draw do
   
+  resources :updates
+
   resources :tasks do
     member do
       get 'switch_completed'
