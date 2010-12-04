@@ -3,6 +3,7 @@
   var form_url = '<%= tasks_path(:project_id=>@project.to_param) %>';
   var completed_url = '<%= switch_completed_task_path(-1, :project_id=>@project.to_param) %>';
   var starred_url = '<%= switch_starred_task_path(-1, :project_id=>@project.to_param) %>';
+  
   function add_new_task(resp, status, xhr, form)
   {
     if(status=='success'){
@@ -35,12 +36,18 @@
     $('.single_task_wrapper input[type="checkbox"]').live('click', switch_task_status);
     $('.single_task_wrapper .star').live('click', star_task);
     $('li.task_list a').click(function(){
+      var loaded_list = $(this).attr('id');
       jQuery.get($(this).attr('js-href'), function(data, text_status){
         //$('#task_items').html('');
         $('#task_items').html(data);
+        $.cookie('loaded_task_list_<%= @project.id unless @project.blank? %>', loaded_list);
       });
       return false;
     });
+    var list_to_load = $.cookie('loaded_task_list_<%= @project.id unless @project.blank? %>');
+    if(list_to_load){
+      $('#'+list_to_load).click();
+    }
     
   });
 </script>

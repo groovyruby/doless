@@ -1,9 +1,9 @@
 <div class="block notice">
   <h3>Tasks</h3>
   <ul class="navigation">
-    <li class="task_list"><%= link_to "All", tasks_path(:project_id=>@project), :'js-href'=>tasks_path(:project_id=>@project, :format=>:js) %></li>
-    <li class="task_list"><%= link_to "Starred", starred_tasks_path(:project_id=>@project), :'js-href'=>starred_tasks_path(:project_id=>@project, :format=>:js) %></li>
-    <li class="task_list"><%= link_to "Completed", completed_tasks_path(:project_id=>@project), :'js-href'=>completed_tasks_path(:project_id=>@project, :format=>:js) %></li>
+    <li class="task_list"><%= link_to "All", tasks_path(:project_id=>@project), :'js-href'=>tasks_path(:project_id=>@project, :format=>:js), :id=>"list_all_href" %></li>
+    <li class="task_list"><%= link_to "Starred", starred_tasks_path(:project_id=>@project), :'js-href'=>starred_tasks_path(:project_id=>@project, :format=>:js), :id=>"list_starred_href" %></li>
+    <li class="task_list"><%= link_to "Completed", completed_tasks_path(:project_id=>@project), :'js-href'=>completed_tasks_path(:project_id=>@project, :format=>:js), :id=>"list_completed_href" %></li>
   </ul>
 </div>
 
