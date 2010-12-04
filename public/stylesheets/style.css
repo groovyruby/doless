@@ -47,3 +47,7 @@ li.single_task_wrapper .task_title{
     width: 465px;
     overflow: hidden;
 }
+.project_context{
+    color: grey;
+    font-style: italic;
+}

@@ -61,6 +61,14 @@ describe TasksController do
       it "recognizes and generates #destroy" do
         { :delete => "/tasks/1" }.should route_to(:controller => "tasks", :action => "destroy", :id => "1")
       end
+      
+      it "recognizes and generates #switch_completed" do
+        { :get => "/tasks/1/switch_completed" }.should route_to(:controller => "tasks", :action => "switch_completed", :id => "1")
+      end
+      
+      it "recognizes and generates #starred" do
+        { :get => "/tasks/starred" }.should route_to(:controller => "tasks", :action => "starred")
+      end
     end
   end
 end

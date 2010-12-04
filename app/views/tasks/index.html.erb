@@ -1,7 +1,8 @@
 <%= content_for :head do %>
 <script type="text/javascript" charset="utf-8">
   var form_url = '<%= tasks_path(:project_id=>@project.to_param) %>';
-  var completed_url = '<%= switch_completed_task_path(-1, :project_id=>@project.to_param) %>'
+  var completed_url = '<%= switch_completed_task_path(-1, :project_id=>@project.to_param) %>';
+  var starred_url = '<%= switch_starred_task_path(-1, :project_id=>@project.to_param) %>';
   function add_new_task(resp, status, xhr, form)
   {
     if(status=='success'){
@@ -17,10 +18,30 @@
       $('#task_id_'+id).fadeOut();
     });
   }
+  
+  function star_task()
+  {
+    var id = $(this).attr('data-value');
+    var replace_url = starred_url.replace(/\-1/, id);
+    jQuery.getJSON(replace_url, function(data, text_status){
+      $('#task_id_'+id).fadeOut();
+    });
+    
+  }
+  
   var single_task = "<%= escape_javascript(render(:partial=>@task)) %>";
   $(document).ready(function(){
     $('#new_task').ajaxForm({success: add_new_task, dataType: 'json', clearForm: true});
     $('.single_task_wrapper input[type="checkbox"]').live('click', switch_task_status);
+    $('.single_task_wrapper .star').live('click', star_task);
+    $('li.task_list a').click(function(){
+      jQuery.get($(this).attr('js-href'), function(data, text_status){
+        //$('#task_items').html('');
+        $('#task_items').html(data);
+      });
+      return false;
+    });
+    
   });
 </script>
 <% end %>
@@ -38,9 +59,7 @@
     <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Tasks</h2>
     <div class="inner">
       <ul class="task_items" id="task_items">
-        <% @tasks.each do |task| %>
-          <%= render :partial=>task%>
-        <% end %>
+        <%= render :partial=>"list" %>
       </ul>
       <div class="actions-bar wat-cf">
         <div class="actions">

@@ -1,7 +1,8 @@
 class Task < ActiveRecord::Base
   
-  scope :active, where('is_completed=?', false)
-  scope :completed, where('is_completed=?', true)
+  scope :active, where('is_completed=?', false).order('is_starred DESC')
+  scope :completed, where('is_completed=?', true).order('updated_at DESC')
+  scope :starred, where('is_starred=?', true)
   
   belongs_to :project
   belongs_to :user
@@ -20,6 +21,15 @@ class Task < ActiveRecord::Base
   
   def switch_completed!
     switch_completed
+    save
+  end
+  
+  def switch_starred
+    self.is_starred = !self.is_starred
+  end
+  
+  def switch_starred!
+    switch_starred
     save
   end
 end

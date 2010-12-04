@@ -22,5 +22,14 @@ describe TasksController do
     get 'switch_completed', :id=>task.to_param
     assigns(:task).is_completed.should == is_completed
   end
+  
+  it "should mark task starred" do
+    task = Factory(:task, :user=>@user)
+    is_starred = task.is_starred
+    get 'switch_starred', :id=>task.to_param
+    assigns(:task).is_starred.should == !is_starred
+    get 'switch_starred', :id=>task.to_param
+    assigns(:task).is_starred.should == is_starred
+  end
 
 end

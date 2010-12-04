@@ -1,14 +1,17 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :try_to_find_project
+  before_filter :generate_new_task, :only=>[:index, :starred, :completed]
   # GET /tasks
   # GET /tasks.xml
   def index
     @tasks = context.active.all
-    @task = Task.new
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tasks }
+      format.json { render :json => @tasks }
+      format.js { render 'list' }
     end
   end
 
@@ -98,10 +101,37 @@ class TasksController < ApplicationController
     end
   end
   
+  def switch_starred
+    @task = context.find(params[:id])
+    @task.switch_starred!
+    respond_to do |format|
+      format.html { redirect_to(tasks_url) }
+      format.js { render :json=>@task }
+    end
+  end
+  
+  def starred
+    @tasks = context.active.starred
+    respond_to do |format|
+      format.html { render :action=>"index" }
+      format.json { render :json=>@tasks }
+      format.js { render 'list' }
+    end
+  end
+  
+  def completed
+    @tasks = context.completed
+    respond_to do |format|
+      format.html { render :action=>"index" }
+      format.json { render :json=>@tasks }
+      format.js { render 'list' }
+    end
+  end
+  
   private
     
     def context
-      @project.blank? ? current_user.tasks : @project.tasks
+      @project.blank? ? current_user.tasks : current_user.tasks.where('project_id=?', @project.id)
     end
     
     def redirect
@@ -114,5 +144,9 @@ class TasksController < ApplicationController
       rescue
         @project = nil
       end
+    end
+    
+    def generate_new_task
+      @task = Task.new
     end
 end

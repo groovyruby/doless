@@ -3,6 +3,11 @@ Doless::Application.routes.draw do
   resources :tasks do
     member do
       get 'switch_completed'
+      get 'switch_starred'
+    end
+    collection do
+      get 'starred'
+      get 'completed'
     end
   end
 

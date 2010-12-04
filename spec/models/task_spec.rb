@@ -17,4 +17,15 @@ describe Task do
     task.is_completed.should == is_completed
     
   end
+  
+  it "should switch being starred" do
+    task = Factory(:task, :user=>@user)
+    is_starred = task.is_starred
+    task.switch_starred!
+    task.reload
+    task.is_starred.should == !is_starred
+    task.switch_starred!
+    task.is_starred.should == is_starred
+    
+  end
 end

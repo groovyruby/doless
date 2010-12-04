@@ -1,8 +1,11 @@
 <li class="single_task_wrapper" id="task_id_<%= task.id %>">
   <div class="checkbox_left">
-    <%= check_box_tag :id, task.id %>
+    <%= check_box_tag :id, task.id, task.is_completed %>
   </div>
   <div class="task_title">
+    <% if @project.blank? and not task.project.blank? %> 
+      <span class="project_context"><%= "[#{task.project.name}]" %></span>
+    <% end %>  
     <%= task.title %>
   </div>
 </li>
