@@ -19,7 +19,7 @@
               <p>
                 <%= insert_links_to_tickets_in_text(wr.report) %>
               </p>
-              <small><%= wr.user %> @ <%= wr.created_at %></small>
+              <small><%= link_to wr.user, profile_path(wr.user.to_param) %> @ <%= wr.created_at %></small>
             </div>
           </li>
         <% end %>

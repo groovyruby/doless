@@ -1,5 +1,7 @@
 Doless::Application.routes.draw do
   
+  get "profile/:id", :as=>'profile', :to=>'profile#show'
+
   resources :updates
 
   resources :tasks do

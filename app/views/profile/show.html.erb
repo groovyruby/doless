@@ -1,0 +1,30 @@
+<div class="block">
+  <div class="content">          
+    <h2 class="title">
+      <%= @user.first_name %>
+    </h2>
+    <div class="inner">
+      <ul class="list">
+        <% for update in @updates %>
+          <li>
+            <div class="left">
+              AVA
+            </div>
+            <div class="item">
+              <p>
+                <%= auto_link(update.body, :html => { :target => '_blank' }) { |text| truncate(text, :length => 15) } %>
+              </p>
+              <small>Utworzono: <%= update.created_at %></small>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+     <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
