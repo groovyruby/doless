@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   has_friendly_id :name, :use_slug => true
   
   has_many :assets
+  has_many :documents
   has_many :permissions
   has_many :users, :through=>:permissions
   #has_many :managers, :class_name => "user", :foreign_key => "user_id", :throught=>:permissions, :where=>['permissions.permission_type>=?', Permission::PERMISSION_TYPES[:leader]

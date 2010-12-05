@@ -1,0 +1,8 @@
+<div class="block notice">
+  <h3>Documents</h3>
+  <ul class="navigation">
+    <% for d in @project.documents %>
+    <li><%= link_to d.title, project_document_path(@project, d) %></li>
+    <% end %>
+  </ul>
+</div>

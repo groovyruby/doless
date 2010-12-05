@@ -16,6 +16,8 @@ Doless::Application.routes.draw do
   end
 
   scope ':project_id', :as=>'project' do
+    resources :documents
+    
     resources :tasks do
       member do
         get 'switch_completed'

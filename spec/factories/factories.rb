@@ -31,3 +31,7 @@ end
 Factory.define :update do |f|
   f.body "lorem ipsum"
 end
+
+Factory.define :document do |f|
+  f.title "foobar"
+end
