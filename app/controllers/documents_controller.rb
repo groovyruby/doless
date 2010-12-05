@@ -62,7 +62,7 @@ class DocumentsController < ApplicationController
   def update
     @document = @project.documents.find(params[:id])
     params[:document] ||= {}
-    params[:changed_by_id] = current_user_id
+    params[:changed_by_id] = current_user.id
     respond_to do |format|
       if @document.update_attributes(params[:document])
         format.html { redirect_to([@project, @document], :notice => 'Document was successfully updated.') }

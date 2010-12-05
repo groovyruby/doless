@@ -11,7 +11,7 @@ class Document < ActiveRecord::Base
   validates :user_id, :presence=>true
   validates :changed_by_id, :presence=>true
   
-  attr_accessible :title, :body, :changed_by_id
+  attr_accessible :title, :content, :changed_by_id
   
   before_save :mark_as_main
   after_save :take_care_of_main_documents
