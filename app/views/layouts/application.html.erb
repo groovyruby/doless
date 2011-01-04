@@ -34,8 +34,6 @@
             <li class="<%= controller.controller_path == 'work_reports' ? 'active' : '' %>"><%= link_to t('doless.modules.work_reports', :default=>'Work reports'), project_work_reports_path(@project) %></li>
             <li class="<%= controller.controller_path == 'documents' ? 'active' : '' %>"><%= link_to t('doless.modules.documents', :default=>'Documents'), project_documents_path(@project) %></li>
             <li class="<%= controller.controller_path == 'topics' ? 'active' : '' %>"><%= link_to t('doless.modules.forum', :default=>'Forum'), project_topics_path(@project) %></li>
-
-            <li class="in_production"><a href="#">Pliki</a></li>
 					<% end %>
         </ul>
       </div>

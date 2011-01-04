@@ -16,7 +16,7 @@
           </div>
           <div class="item">
             <p>
-              <%= auto_link(update.body, :html => { :target => '_blank' }) { |text| truncate(text, :length => 15) } %>
+              <%= auto_link(update.body, :html => { :target => '_blank' }) { |text| truncate(text, :length => 50) } %>
             </p>
               <small>Utworzono: <%= update.created_at %></small>
             
